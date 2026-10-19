@@ -1,16 +1,23 @@
-; AddTwo.asm - adds two 32-bit integers.
-; Chapter 3 example
+INCLUDE Irvine32.inc
 
-.386
-.model flat,stdcall
-.stack 4096
 ExitProcess proto,dwExitCode:dword
 
+.data
+top_bottom_boundary BYTE "------------------------------------------------",0
+side_boundary BYTE "-",0
+
 .code
-AddThree PROC
-mov eax,3
-add eax,6
+main PROC
+mov edx, OFFSET top_bottom_boundary
+call WriteString
+
+mov dl, 0
+mov dh, 20
+call Gotoxy
+
+mov edx, OFFSET top_bottom_boundary
+call WriteString
 
 invoke ExitProcess,0
-AddThree ENDP
-end AddThree
+main ENDP
+end main
