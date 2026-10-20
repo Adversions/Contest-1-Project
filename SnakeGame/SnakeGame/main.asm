@@ -90,6 +90,7 @@ call WriteChar
 
 SpawnFruit ENDP
 
+; Depending on the character in the direction variable, a specific procedure is called
 MoveSnake PROC
 .IF direction == 85
 	call MoveUp
@@ -103,6 +104,7 @@ MoveSnake PROC
 ret
 MoveSnake ENDP
 
+; moves the snake one space in the left direction
 MoveLeft PROC
 mov al, 's'
 dec BYTE PTR [snake_head_pos + 1];snake_f_xpos
