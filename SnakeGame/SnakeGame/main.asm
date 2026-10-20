@@ -6,7 +6,7 @@ ExitProcess proto,dwExitCode:dword
 top_bottom_boundary BYTE "------------------------------------------------",0
 side_boundary BYTE "-",0
 snake BYTE "s",0
-direction BYTE ?
+direction BYTE 'R'
 sXpos BYTE 20
 sYpos BYTE 10
 
@@ -31,23 +31,40 @@ je move_down
 cmp ah, 4Bh
 je move_left
 cmp ah, 4Dh
-je move_right
+je move_right 
 
 move_up:
+mov direction, 'U'
+jmp noKeyPressed
 move_down:
+mov direction, 'D'
+jmp noKeyPressed
 move_left:
+mov direction, 'L'
+jmp noKeyPressed
 move_right:
+mov direction, 'R'
 
 
 
 noKeyPressed:
+call MoveSnake
 
 jmp GameLoop
 
 invoke ExitProcess,0
 main ENDP
 
-
+MoveSnake PROC
+.IF 85 == direction
+	call MoveUp
+.ELSEIF 69 == direction
+	call MoveDown
+.ELSEIF 82 == direction
+	call MoveRight
+.ELSE
+	call MoveLeft
+MoveSnake ENDP
 
 
 MakeBoundary PROC
