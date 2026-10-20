@@ -6,7 +6,7 @@ ExitProcess proto,dwExitCode:dword
 top_bottom_boundary BYTE "------------------------------------------------",0
 side_boundary BYTE "-",0
 snake BYTE "s",0
-direction BYTE 'U'
+direction BYTE 'D'
 snake_f_Xpos BYTE 20 ;front x position
 snake_f_Ypos BYTE 10 ;front y position
 snake_e_Xpos BYTE 20 ;end x position
@@ -61,8 +61,8 @@ main ENDP
 MoveSnake PROC
 .IF direction == 85
 	call MoveUp
-.ELSEIF direction == 69
-	;call MoveDown
+.ELSEIF direction == 68
+	call MoveDown
 .ELSEIF direction == 82
 	;call MoveRight
 .ELSE
@@ -70,6 +70,28 @@ MoveSnake PROC
 .ENDIF
 ret
 MoveSnake ENDP
+
+MoveDown PROC
+mov al, 's'
+mov dl, snake_f_xpos
+inc snake_f_ypos
+mov dh, snake_f_ypos
+call Gotoxy
+call WriteChar
+mov al, ' '
+mov dl, snake_e_xpos
+mov dh, snake_e_ypos
+call Gotoxy
+call WriteChar
+
+mov al, snake_f_xpos
+mov bl, snake_f_ypos
+
+mov snake_e_xpos, al
+mov snake_e_ypos, bl
+
+ret
+MoveDown ENDP
 
 MoveUp PROC
 mov al, 's'
