@@ -20,25 +20,28 @@ main PROC
 call MakeBoundary
 call SpawnFruit
 
+;Creates and positions the inital snake head/tail
 mov dl, BYTE PTR [snake_head_pos + 1]
 mov dh, BYTE PTR snake_head_pos
 call Gotoxy
 mov al, 's'
 call WriteChar
 
+;infinate loop
 GameLoop:
 call ReadKey
 jz noKeyPressed
 
-cmp ah, 48h
+cmp ah, 48h ; checks if up arrow key pressed
 je move_up
-cmp ah, 50h
+cmp ah, 50h ; checks if down arrow key pressed
 je move_down
-cmp ah, 4Bh
+cmp ah, 4Bh; checks if left arrow key pressed
 je move_left
-cmp ah, 4Dh
+cmp ah, 4Dh ; checks if right arrow key pressed
 je move_right 
 
+;changes the direction variable depending on arrow key pressed
 move_up:
 mov direction, 'U'
 jmp noKeyPressed
@@ -54,6 +57,7 @@ mov direction, 'R'
 noKeyPressed:
 call MoveSnake
 
+;Adds a 1 second delay between when the snake moves
 mov eax, 1000
 call Delay
 jmp GameLoop
