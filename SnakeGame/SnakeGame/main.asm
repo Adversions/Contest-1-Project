@@ -64,12 +64,34 @@ MoveSnake PROC
 .ELSEIF direction == 68
 	call MoveDown
 .ELSEIF direction == 82
-	;call MoveRight
+	call MoveRight
 .ELSE
 	;call MoveLeft
 .ENDIF
 ret
 MoveSnake ENDP
+
+MoveRight PROC
+mov al, 's'
+inc snake_f_xpos
+mov dl, snake_f_xpos
+mov dh, snake_f_ypos
+call Gotoxy
+call WriteChar
+mov al, ' '
+mov dl, snake_e_xpos
+mov dh, snake_e_ypos
+call Gotoxy
+call WriteChar
+
+mov al, snake_f_xpos
+mov bl, snake_f_ypos
+
+mov snake_e_xpos, al
+mov snake_e_ypos, bl
+
+ret
+MoveRight ENDP
 
 MoveDown PROC
 mov al, 's'
