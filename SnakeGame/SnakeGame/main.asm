@@ -5,13 +5,25 @@ ExitProcess proto,dwExitCode:dword
 .data
 top_bottom_boundary BYTE "------------------------------------------------",0
 side_boundary BYTE "-",0
+snake BYTE "s",0
+sXpos BYTE 20
+sYpos BYTE 10
 
 .code
 main PROC
 call MakeBoundary
 
+mov dl, sXpos
+mov dh, sYpos
+call Gotoxy
+mov edx, OFFSET snake
+call WriteString
+
+
 invoke ExitProcess,0
 main ENDP
+
+
 
 
 MakeBoundary PROC
@@ -52,5 +64,6 @@ call Gotoxy
 mov edx, OFFSET top_bottom_boundary
 call WriteString
 
+ret
 MakeBoundary ENDP
 end main
