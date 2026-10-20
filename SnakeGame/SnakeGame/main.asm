@@ -127,6 +127,7 @@ mov BYTE PTR snake_head_pos, bl
 ret
 MoveLeft ENDP
 
+; Moves the snake one space right
 MoveRight PROC
 mov al, 's'
 inc BYTE PTR [snake_head_pos + 1]
@@ -149,6 +150,7 @@ mov BYTE PTR snake_tail_pos, bl
 ret
 MoveRight ENDP
 
+; Moves the snake one space down
 MoveDown PROC
 mov al, 's'
 mov dl, BYTE PTR [snake_head_pos + 1]
@@ -171,6 +173,7 @@ mov BYTE PTR snake_tail_pos, bl
 ret
 MoveDown ENDP
 
+; Moves the snake one space up
 MoveUp PROC
 mov al, 's'
 mov dl, BYTE PTR [snake_head_pos + 1]
@@ -193,6 +196,7 @@ mov BYTE PTR snake_tail_pos, bl
 ret
 MoveUp ENDP
 
+; Makes the boundary that the snake is confined too
 MakeBoundary PROC
 mov edx, OFFSET top_bottom_boundary
 call WriteString
