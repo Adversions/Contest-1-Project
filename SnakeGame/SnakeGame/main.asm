@@ -17,8 +17,9 @@ fruit_pos WORD ? ; coordinates of teh fruit position
 
 .code
 main PROC
+call Randomize
 call MakeBoundary
-;call SpawnFruit
+call SpawnFruit
 
 ;Creates and positions the inital snake head/tail
 mov dl, BYTE PTR [snake_head_pos + 1]
@@ -68,8 +69,8 @@ main ENDP
 ; The spawnFruit procedure does not currently work. I was just adding comments
 ; for all my code and didn't mean to add the spawnFruits procedure to my commit.
 SpawnFruit PROC
-xpos BYTE ?
-ypos BYTE ?
+LOCAL xpos:BYTE 
+LOCAL ypos:BYTE
 mov eax, 46
 call RandomRange
 inc eax
@@ -88,6 +89,7 @@ call Gotoxy
 mov al, '@'
 call WriteChar
 
+ret
 SpawnFruit ENDP
 
 ; Depending on the character in the direction variable, a specific procedure is called
