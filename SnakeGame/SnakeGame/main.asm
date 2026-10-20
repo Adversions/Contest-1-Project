@@ -31,6 +31,20 @@ mov dl, 0
 mov dh, bl
 LOOP L1
 
+
+mov ecx, 19
+mov bl, 1
+mov dl, 47
+mov dh, bl
+L2:
+call Gotoxy
+mov edx, OFFSET side_boundary
+call WriteString
+inc ebx
+mov dl, 47
+mov dh, bl
+LOOP L2
+
 mov dl, 0
 mov dh, 20
 call Gotoxy
