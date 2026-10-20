@@ -7,17 +7,18 @@ top_bottom_boundary BYTE "------------------------------------------------",0
 side_boundary BYTE "-",0
 snake WORD 828 DUP(?)
 	  WORD 140Ah ;x pos stored in the upper 8 bits and y pos stored in the lower 8 bits
-direction BYTE 'L'
-headIndex DWORD 828
-snake_head_pos WORD 140Ah
-snake_tail_pos WORD 140Ah
-fXpos BYTE ? ;fruit x position
-fYpos BYTE ? ;fruit y position
+direction BYTE 'L' ;L: moving left, R: moving right, D: moving down, U: moving up
+headIndex DWORD 828 ; index of the head coordinates
+tailIndex DWORD 828 ; index of the tail coordinates
+snake_head_pos WORD 140Ah ; coordinates of the head position
+snake_tail_pos WORD 140Ah ; coordinates of the tail position
+fruit_pos WORD ? ; coordinates of teh fruit position
 
 
 .code
 main PROC
 call MakeBoundary
+call SpawnFruit
 
 mov dl, BYTE PTR [snake_head_pos + 1]
 mov dh, BYTE PTR snake_head_pos
@@ -59,6 +60,29 @@ jmp GameLoop
 
 invoke ExitProcess,0
 main ENDP
+
+SpawnFruit PROC
+xpos BYTE ?
+ypos BYTE ?
+mov eax, 46
+call RandomRange
+inc eax
+
+mov xpos, al
+
+mov eax, 17
+call RandomRange
+inc eax
+
+mov ypos, al
+
+mov dl, xpos
+mov dh, ypos
+call Gotoxy
+mov al, '@'
+call WriteChar
+
+SpawnFruit ENDP
 
 MoveSnake PROC
 .IF direction == 85
