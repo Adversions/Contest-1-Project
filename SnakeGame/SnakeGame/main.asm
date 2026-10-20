@@ -18,7 +18,7 @@ fruit_pos WORD ? ; coordinates of teh fruit position
 .code
 main PROC
 call MakeBoundary
-call SpawnFruit
+;call SpawnFruit
 
 ;Creates and positions the inital snake head/tail
 mov dl, BYTE PTR [snake_head_pos + 1]
