@@ -89,6 +89,8 @@ call Gotoxy
 mov al, '@'
 call WriteChar
 
+mov BYTE PTR [fruit_pos + 1], dl
+mov BYTE PTR fruit_pos, dh
 ret
 SpawnFruit ENDP
 
