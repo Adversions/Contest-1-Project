@@ -65,6 +65,8 @@ jmp GameLoop
 invoke ExitProcess,0
 main ENDP
 
+; The spawnFruit procedure does not currently work. I was just adding comments
+; for all my code and didn't mean to add the spawnFruits procedure to my commit.
 SpawnFruit PROC
 xpos BYTE ?
 ypos BYTE ?
