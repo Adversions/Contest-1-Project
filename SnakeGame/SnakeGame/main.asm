@@ -5,23 +5,25 @@ ExitProcess proto,dwExitCode:dword
 .data
 top_bottom_boundary BYTE "------------------------------------------------",0
 side_boundary BYTE "-",0
-snake BYTE "s",0
-direction BYTE 'D'
-snake_f_Xpos BYTE 20 ;front x position
-snake_f_Ypos BYTE 10 ;front y position
-snake_e_Xpos BYTE 20 ;end x position
-snake_e_Ypos BYTE 10 ;end y position
+snake WORD 828 DUP(?)
+	  WORD 140Ah ;x pos stored in the upper 8 bits and y pos stored in the lower 8 bits
+direction BYTE 'L'
+headIndex DWORD 828
+snake_head_pos WORD 140Ah
+snake_tail_pos WORD 140Ah
+fXpos BYTE ? ;fruit x position
+fYpos BYTE ? ;fruit y position
 
 
 .code
 main PROC
 call MakeBoundary
 
-mov dl, snake_f_Xpos
-mov dh, snake_f_Ypos
+mov dl, BYTE PTR [snake_head_pos + 1]
+mov dh, BYTE PTR snake_head_pos
 call Gotoxy
-mov edx, OFFSET snake
-call WriteString
+mov al, 's'
+call WriteChar
 
 GameLoop:
 call ReadKey
@@ -73,88 +75,88 @@ MoveSnake ENDP
 
 MoveLeft PROC
 mov al, 's'
-dec snake_f_xpos
-mov dl, snake_f_xpos
-mov dh, snake_f_ypos
+dec BYTE PTR [snake_head_pos + 1];snake_f_xpos
+mov dl, BYTE PTR [snake_head_pos + 1];snake_f_xpos
+mov dh, BYTE PTR snake_head_pos
 call Gotoxy
 call WriteChar
 mov al, ' '
-mov dl, snake_e_xpos
-mov dh, snake_e_ypos
+mov dl, BYTE PTR [snake_tail_pos + 1]
+mov dh, BYTE PTR snake_tail_pos
 call Gotoxy
 call WriteChar
 
-mov al, snake_f_xpos
-mov bl, snake_f_ypos
+mov al, BYTE PTR [snake_head_pos + 1]
+mov bl, BYTE PTR snake_head_pos
 
-mov snake_e_xpos, al
-mov snake_e_ypos, bl
+mov BYTE PTR [snake_tail_pos + 1], al
+mov BYTE PTR snake_head_pos, bl
 
 ret
 MoveLeft ENDP
 
 MoveRight PROC
 mov al, 's'
-inc snake_f_xpos
-mov dl, snake_f_xpos
-mov dh, snake_f_ypos
+inc BYTE PTR [snake_head_pos + 1]
+mov dl, BYTE PTR [snake_head_pos + 1]
+mov dh, BYTE PTR snake_head_pos
 call Gotoxy
 call WriteChar
 mov al, ' '
-mov dl, snake_e_xpos
-mov dh, snake_e_ypos
+mov dl, BYTE PTR [snake_tail_pos + 1]
+mov dh, BYTE PTR snake_tail_pos
 call Gotoxy
 call WriteChar
 
-mov al, snake_f_xpos
-mov bl, snake_f_ypos
+mov al, BYTE PTR [snake_head_pos + 1]
+mov bl, BYTE PTR snake_head_pos
 
-mov snake_e_xpos, al
-mov snake_e_ypos, bl
+mov BYTE PTR [snake_tail_pos + 1], al
+mov BYTE PTR snake_tail_pos, bl
 
 ret
 MoveRight ENDP
 
 MoveDown PROC
 mov al, 's'
-mov dl, snake_f_xpos
-inc snake_f_ypos
-mov dh, snake_f_ypos
+mov dl, BYTE PTR [snake_head_pos + 1]
+inc BYTE PTR snake_head_pos
+mov dh, BYTE PTR snake_head_pos
 call Gotoxy
 call WriteChar
 mov al, ' '
-mov dl, snake_e_xpos
-mov dh, snake_e_ypos
+mov dl, BYTE PTR [snake_tail_pos + 1]
+mov dh, BYTE PTR snake_tail_pos
 call Gotoxy
 call WriteChar
 
-mov al, snake_f_xpos
-mov bl, snake_f_ypos
+mov al, BYTE PTR [snake_head_pos + 1]
+mov bl, BYTE PTR snake_head_pos
 
-mov snake_e_xpos, al
-mov snake_e_ypos, bl
+mov BYTE PTR [snake_tail_pos + 1], al
+mov BYTE PTR snake_tail_pos, bl
 
 ret
 MoveDown ENDP
 
 MoveUp PROC
 mov al, 's'
-mov dl, snake_f_xpos
-dec snake_f_ypos
-mov dh, snake_f_ypos
+mov dl, BYTE PTR [snake_head_pos + 1]
+dec BYTE PTR snake_head_pos
+mov dh, BYTE PTR snake_head_pos
 call Gotoxy
 call WriteChar
 mov al, ' '
-mov dl, snake_e_xpos
-mov dh, snake_e_ypos
+mov dl, BYTE PTR [snake_tail_pos + 1]
+mov dh, BYTE PTR snake_tail_pos
 call Gotoxy
 call WriteChar
 
-mov al, snake_f_xpos
-mov bl, snake_f_ypos
+mov al, BYTE PTR [snake_head_pos + 1]
+mov bl, BYTE PTR snake_head_pos
 
-mov snake_e_xpos, al
-mov snake_e_ypos, bl
+mov BYTE PTR [snake_tail_pos + 1], al
+mov BYTE PTR snake_tail_pos, bl
 
 ret
 MoveUp ENDP
