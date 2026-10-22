@@ -63,6 +63,17 @@ jmp GameLoop
 invoke ExitProcess,0
 main ENDP
 
+GetHeadCoordinates PROC
+mov eax, snake_head_pos
+sub eax, OFFSET map
+
+xor edx, edx
+mov ecx, 46
+div ecx
+
+ret
+GetHeadCoordinates ENDP
+
 ; The spawnFruit procedure does not currently work. I was just adding comments
 ; for all my code and didn't mean to add the spawnFruits procedure to my commit.
 SpawnFruit PROC
