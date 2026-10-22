@@ -19,8 +19,9 @@ call MakeBoundary
 call SpawnFruit
 
 ;Creates and positions the inital snake head/tail
-mov dl, BYTE PTR [snake_head_pos + 1]
-mov dh, BYTE PTR snake_head_pos
+call GetHeadCoordinates
+mov dl, al
+mov dh, dl
 call Gotoxy
 mov al, 's'
 call WriteChar
@@ -83,7 +84,7 @@ mov ecx, 46
 div ecx
 
 ret
-GetTailCoordiantes ENDP
+GetTailCoordinates ENDP
 
 ; The spawnFruit procedure does not currently work. I was just adding comments
 ; for all my code and didn't mean to add the spawnFruits procedure to my commit.
