@@ -200,12 +200,16 @@ MoveRight ENDP
 
 ; Moves the snake one space down
 MoveDown PROC
-mov al, 's'
-mov dl, BYTE PTR [snake_head_pos + 1]
-inc BYTE PTR snake_head_pos
-mov dh, BYTE PTR snake_head_pos
+call GetHeadCoordinates
+mov dl, dl
+inc al
+mov dh, al
 call Gotoxy
+mov bl, 'H'
+call UpdateCoordinates
+mov al, 's'
 call WriteChar
+
 mov al, ' '
 mov dl, BYTE PTR [snake_tail_pos + 1]
 mov dh, BYTE PTR snake_tail_pos
