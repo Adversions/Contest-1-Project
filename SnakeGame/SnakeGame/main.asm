@@ -5,8 +5,7 @@ ExitProcess proto,dwExitCode:dword
 .data
 top_bottom_boundary BYTE "------------------------------------------------",0
 side_boundary BYTE "-",0
-snake WORD 828 DUP(?)
-	  WORD 140Ah ;x pos stored in the upper 8 bits and y pos stored in the lower 8 bits
+map BYTE 874 DUP(0) ; an array the represents each point on the map
 direction BYTE 'L' ;L: moving left, R: moving right, D: moving down, U: moving up
 headIndex DWORD 828 ; index of the head coordinates
 tailIndex DWORD 828 ; index of the tail coordinates
