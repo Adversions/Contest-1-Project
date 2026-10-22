@@ -96,7 +96,7 @@ ret
 GetHeadCoordinates ENDP
 
 GetTailCoordinates PROC
-mov eax, snake_head_pos
+mov eax, snake_tail_pos
 sub eax, OFFSET map
 
 xor edx, edx
@@ -151,7 +151,7 @@ MoveSnake ENDP
 ; moves the snake one space in the left direction
 MoveLeft PROC
 call GetHeadCoordinates
-dec al
+dec dl
 mov dl, dl
 mov dh, al
 call Gotoxy
@@ -159,20 +159,16 @@ mov bl, 'H'
 call UpdateCoordinates
 mov al, 's'
 call WriteChar
+
 call GetTailCoordinates
 mov dl, dl
 mov dh, al
 call Gotoxy
-mov bl, 'T'
-call UpdateCoordinates
 mov al, ' '
 call WriteChar
-
-mov al, BYTE PTR [snake_head_pos + 1]
-mov bl, BYTE PTR snake_head_pos
-
-mov BYTE PTR [snake_tail_pos + 1], al
-mov BYTE PTR snake_head_pos, bl
+mov bl, 'T'
+dec dl
+call UpdateCoordinates
 
 ret
 MoveLeft ENDP
