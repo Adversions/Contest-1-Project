@@ -72,7 +72,16 @@ movzx ecx, dl
 add eax, ecx
 
 add eax, OFFSET map
+
+cmp bl, 'H'
+jz updateHead
+
+mov snake_tail_pos, eax
+ret
+
+updateHead:
 mov snake_head_pos, eax
+ret
 UpdateCoordinates ENDP
 
 GetHeadCoordinates PROC
@@ -146,12 +155,16 @@ dec al
 mov dl, dl
 mov dh, al
 call Gotoxy
+mov bl, 'H'
+call UpdateCoordinates
 mov al, 's'
 call WriteChar
 call GetTailCoordinates
 mov dl, dl
 mov dh, al
 call Gotoxy
+mov bl, 'T'
+call UpdateCoordinates
 mov al, ' '
 call WriteChar
 
