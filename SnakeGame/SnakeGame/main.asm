@@ -7,10 +7,8 @@ top_bottom_boundary BYTE "------------------------------------------------",0
 side_boundary BYTE "-",0
 map BYTE 874 DUP(0) ; an array the represents each point on the map
 direction BYTE 'L' ;L: moving left, R: moving right, D: moving down, U: moving up
-headIndex DWORD 828 ; index of the head coordinates
-tailIndex DWORD 828 ; index of the tail coordinates
-snake_head_pos WORD 140Ah ; coordinates of the head position
-snake_tail_pos WORD 140Ah ; coordinates of the tail position
+snake_head_pos DWORD (OFFSET map + 480) ; coordinates of the head position
+snake_tail_pos DWORD (OFFSET map + 480) ; coordinates of the tail position
 fruit_pos WORD ? ; coordinates of teh fruit position
 
 
