@@ -235,17 +235,15 @@ call UpdateCoordinates
 mov al, 's'
 call WriteChar
 
-mov al, ' '
-mov dl, BYTE PTR [snake_tail_pos + 1]
-mov dh, BYTE PTR snake_tail_pos
+call GetTailCoordinates
+mov dl, dl
+mov dh, al
 call Gotoxy
+mov al, ' '
 call WriteChar
-
-mov al, BYTE PTR [snake_head_pos + 1]
-mov bl, BYTE PTR snake_head_pos
-
-mov BYTE PTR [snake_tail_pos + 1], al
-mov BYTE PTR snake_tail_pos, bl
+mov bl, 'T'
+dec dh
+call UpdateCoordinates
 
 ret
 MoveUp ENDP
