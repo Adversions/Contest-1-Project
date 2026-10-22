@@ -64,6 +64,17 @@ jmp GameLoop
 invoke ExitProcess,0
 main ENDP
 
+UpdateHeadCoordinates PROC
+movzx eax, dh
+imul eax, eax, 46
+
+movzx ecx, dl
+add eax, ecx
+
+add eax, OFFSET map
+mov snake_head_pos, eax
+UpdateHeadCoordinates ENDP
+
 GetHeadCoordinates PROC
 mov eax, snake_head_pos
 sub eax, OFFSET map
