@@ -20,8 +20,8 @@ call SpawnFruit
 
 ;Creates and positions the inital snake head/tail
 call GetHeadCoordinates
-mov dl, al
-mov dh, dl
+mov dl, dl
+mov dh, al
 call Gotoxy
 mov al, 's'
 call WriteChar
@@ -132,14 +132,14 @@ MoveSnake ENDP
 MoveLeft PROC
 call GetHeadCoordinates
 dec al
-mov dl, al
-mov dh, dl
+mov dl, dl
+mov dh, al
 call Gotoxy
 mov al, 's'
 call WriteChar
 call GetTailCoordinates
-mov dl, al
-mov dh, dl
+mov dl, dl
+mov dh, al
 call Gotoxy
 mov al, ' '
 call WriteChar
