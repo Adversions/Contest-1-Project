@@ -130,16 +130,18 @@ MoveSnake ENDP
 
 ; moves the snake one space in the left direction
 MoveLeft PROC
+call GetHeadCoordinates
+dec al
+mov dl, al
+mov dh, dl
+call Gotoxy
 mov al, 's'
-dec BYTE PTR [snake_head_pos + 1];snake_f_xpos
-mov dl, BYTE PTR [snake_head_pos + 1];snake_f_xpos
-mov dh, BYTE PTR snake_head_pos
-call Gotoxy
 call WriteChar
-mov al, ' '
-mov dl, BYTE PTR [snake_tail_pos + 1]
-mov dh, BYTE PTR snake_tail_pos
+call GetTailCoordinates
+mov dl, al
+mov dh, dl
 call Gotoxy
+mov al, ' '
 call WriteChar
 
 mov al, BYTE PTR [snake_head_pos + 1]
