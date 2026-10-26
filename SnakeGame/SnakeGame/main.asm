@@ -72,9 +72,11 @@ UpdateCoordinates PROC
 cmp bl, 'H'
 jz updateHead
 
+push edx
 mov edx, [snake_tail_pos]
 mov al, [edx]
 mov BYTE PTR [edx], 0
+pop edx
 
 .IF al == 85
 	dec dh ; moved up
@@ -86,9 +88,6 @@ mov BYTE PTR [edx], 0
 	dec dl ; moved left
 .ENDIF
 
-mov snake_tail_pos, eax
-ret
-
 updateHead:
 movzx eax, dh
 imul eax, eax, 46
@@ -97,7 +96,15 @@ movzx ecx, dl
 add eax, ecx
 
 add eax, OFFSET map
-mov snake_head_pos, eax
+cmp bl, 'T'
+jz tail
+mov bl, [direction]
+mov edx, [snake_head_pos]
+mov [edx], bl ; moves direction char to old position of head so the tail know where to go
+mov [snake_head_pos], eax
+ret
+tail:
+mov [snake_tail_pos], eax
 ret
 UpdateCoordinates ENDP
 
