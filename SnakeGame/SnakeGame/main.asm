@@ -72,6 +72,19 @@ UpdateCoordinates PROC
 cmp bl, 'H'
 jz updateHead
 
+mov edx, [snake_tail_pos]
+mov al, [edx]
+mov BYTE PTR [edx], 0
+
+.IF al == 85
+	dec dh ; moved up
+.ELSEIF al == 68
+	inc dh ; moved down
+.ELSEIF al == 82
+	inc dl ; moved right
+.ELSE
+	dec dl ; moved left
+.ENDIF
 
 mov snake_tail_pos, eax
 ret
@@ -171,7 +184,6 @@ call Gotoxy
 mov al, ' '
 call WriteChar
 mov bl, 'T'
-dec dl
 call UpdateCoordinates
 
 ret
@@ -196,7 +208,6 @@ call Gotoxy
 mov al, ' '
 call WriteChar
 mov bl, 'T'
-inc dl
 call UpdateCoordinates
 
 ret
@@ -221,7 +232,6 @@ call Gotoxy
 mov al, ' '
 call WriteChar
 mov bl, 'T'
-inc dh
 call UpdateCoordinates
 
 ret
@@ -246,7 +256,6 @@ call Gotoxy
 mov al, ' '
 call WriteChar
 mov bl, 'T'
-dec dh
 call UpdateCoordinates
 
 ret
