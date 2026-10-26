@@ -26,10 +26,6 @@ call Gotoxy
 mov al, 's'
 call WriteChar
 
-mov edx, [snake_head_pos] ; Places a direction character at the coordinate of each snakr char
-mov al, [direction]
-mov [edx], al
-
 ;infinate loop
 GameLoop:
 call ReadKey
