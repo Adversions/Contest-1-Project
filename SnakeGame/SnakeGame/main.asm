@@ -69,6 +69,14 @@ invoke ExitProcess,0
 main ENDP
 
 UpdateCoordinates PROC
+cmp bl, 'H'
+jz updateHead
+
+
+mov snake_tail_pos, eax
+ret
+
+updateHead:
 movzx eax, dh
 imul eax, eax, 46
 
@@ -76,14 +84,6 @@ movzx ecx, dl
 add eax, ecx
 
 add eax, OFFSET map
-
-cmp bl, 'H'
-jz updateHead
-
-mov snake_tail_pos, eax
-ret
-
-updateHead:
 mov snake_head_pos, eax
 ret
 UpdateCoordinates ENDP
