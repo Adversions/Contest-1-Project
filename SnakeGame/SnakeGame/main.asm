@@ -96,7 +96,7 @@ pop edx
 	dec dl ; moved left
 .ENDIF
 
-updateHead:					; jumps here is the head is being updated
+updateHead:					; jumps here if the head is being updated
 movzx eax, dh				; moves the row (y pos) into eax
 imul eax, eax, 46			; multiplies it by 46 (length of a row) to get to the correct row on map
 
@@ -106,14 +106,14 @@ add eax, ecx				; adds the column pos to eax to get the correct row and col on t
 add eax, OFFSET map			; adds the offset of map to eax
 cmp bl, 'T'
 jz tail
-mov bl, [direction]
-mov edx, [snake_head_pos]
+mov bl, [direction]			; moves the direction character into bl
+mov edx, [snake_head_pos]	; moves the old snake head pos into edx
 mov [edx], bl ; moves direction char to old position of head so the tail know where to go
-mov [snake_head_pos], eax
+mov [snake_head_pos], eax	;moves the new head pos into the snake_head_pos variable
 call AteFruit
 ret
 tail:
-mov [snake_tail_pos], eax
+mov [snake_tail_pos], eax	;moves the new tail pos into the snake_tail_pos variable
 ret
 UpdateCoordinates ENDP
 
