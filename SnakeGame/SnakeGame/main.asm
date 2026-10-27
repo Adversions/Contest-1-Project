@@ -76,15 +76,16 @@ ret
 AteFruit ENDP
 
 UpdateCoordinates PROC
-cmp bl, 'H'
+cmp bl, 'H' ; Depending on wether the head('H') or tail('T') is being updated
 jz updateHead
 
 push edx
-mov edx, [snake_tail_pos]
-mov al, [edx]
-mov BYTE PTR [edx], 0
+mov edx, [snake_tail_pos]   ; Moves the snake_tail_pos contents into edx
+mov al, [edx]				; Moves what char is at the tail_pos on map into al (Ex. 'L' or 'R')
+mov BYTE PTR [edx], 0		; Sets that position in the map to zero
 pop edx
 
+; Checks what character was at the tail_pos
 .IF al == 85
 	dec dh ; moved up
 .ELSEIF al == 68
@@ -95,14 +96,14 @@ pop edx
 	dec dl ; moved left
 .ENDIF
 
-updateHead:
-movzx eax, dh
-imul eax, eax, 46
+updateHead:					; jumps here is the head is being updated
+movzx eax, dh				; moves the row (y pos) into eax
+imul eax, eax, 46			; multiplies it by 46 (length of a row) to get to the correct row on map
 
-movzx ecx, dl
-add eax, ecx
+movzx ecx, dl				; moves the column (x pos) into ecx
+add eax, ecx				; adds the column pos to eax to get the correct row and col on the map
 
-add eax, OFFSET map
+add eax, OFFSET map			; adds the offset of map to eax
 cmp bl, 'T'
 jz tail
 mov bl, [direction]
