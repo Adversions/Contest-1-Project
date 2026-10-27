@@ -64,6 +64,17 @@ jmp GameLoop
 invoke ExitProcess,0
 main ENDP
 
+; Checks if a fruit has been eaten
+AteFruit PROC
+mov eax, [snake_head_pos] ; position of the head put in eax
+mov ebx, [fruit_pos]      ; position of the fruit put in ebx
+
+.IF eax == ebx            ; if they equal, spawns another fruit
+	call SpawnFruit
+.ENDIF
+
+AteFruit ENDP
+
 UpdateCoordinates PROC
 cmp bl, 'H'
 jz updateHead
