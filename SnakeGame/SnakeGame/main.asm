@@ -9,7 +9,7 @@ map BYTE 874 DUP(0) ; an array the represents each point on the map
 direction BYTE 'L' ;L: moving left, R: moving right, D: moving down, U: moving up
 snake_head_pos DWORD (OFFSET map + 480) ; coordinates of the head position
 snake_tail_pos DWORD (OFFSET map + 480) ; coordinates of the tail position
-fruit_pos WORD ? ; coordinates of teh fruit position
+fruit_pos DWORD ? ; coordinates of teh fruit position
 
 
 .code
@@ -149,8 +149,12 @@ call Gotoxy
 mov al, '@'
 call WriteChar
 
-mov BYTE PTR [fruit_pos + 1], dl
-mov BYTE PTR fruit_pos, dh
+movzx eax, dh
+imul eax, eax, 46
+movzx ecx, dl
+add eax, ecx
+add eax, OFFSET map
+mov [fruit_pos], eax
 ret
 SpawnFruit ENDP
 
