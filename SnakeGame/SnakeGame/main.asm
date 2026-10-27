@@ -189,23 +189,23 @@ MoveSnake ENDP
 
 ; moves the snake one space in the left direction
 MoveLeft PROC
-call GetHeadCoordinates
-dec dl
+call GetHeadCoordinates		; gets the head coordinates into eax and edx
+dec dl						; decriments the col
 mov dl, dl
 mov dh, al
 call Gotoxy
 mov al, 's'
 call WriteChar
-mov bl, 'H'
+mov bl, 'H'					; moves the 'H' char into bl reg so updateCoordinates proc knows its updating the head pos
 call UpdateCoordinates
 
-call GetTailCoordinates
-mov dl, dl
+call GetTailCoordinates		; gets the tail coordinates into eax and edx
+mov dl, dl					; The tail col pos get decrimented in the updateCoordinates proc
 mov dh, al
 call Gotoxy
 mov al, ' '
 call WriteChar
-mov bl, 'T'
+mov bl, 'T'					;  moves the 'T' char into bl reg so updateCoordinates proc knows its updating the head pos
 call UpdateCoordinates
 
 ret
