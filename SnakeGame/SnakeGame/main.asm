@@ -191,10 +191,10 @@ dec dl
 mov dl, dl
 mov dh, al
 call Gotoxy
-mov bl, 'H'
-call UpdateCoordinates
 mov al, 's'
 call WriteChar
+mov bl, 'H'
+call UpdateCoordinates
 
 call GetTailCoordinates
 mov dl, dl
@@ -215,10 +215,10 @@ inc dl
 mov dl, dl
 mov dh, al
 call Gotoxy
-mov bl, 'H'
-call UpdateCoordinates
 mov al, 's'
 call WriteChar
+mov bl, 'H'
+call UpdateCoordinates
 
 call GetTailCoordinates
 mov dl, dl
@@ -239,10 +239,10 @@ mov dl, dl
 inc al
 mov dh, al
 call Gotoxy
-mov bl, 'H'
-call UpdateCoordinates
 mov al, 's'
 call WriteChar
+mov bl, 'H'
+call UpdateCoordinates
 
 call GetTailCoordinates
 mov dl, dl
@@ -263,10 +263,10 @@ mov dl, dl
 dec al
 mov dh, al
 call Gotoxy
-mov bl, 'H'
-call UpdateCoordinates
 mov al, 's'
 call WriteChar
+mov bl, 'H'
+call UpdateCoordinates
 
 call GetTailCoordinates
 mov dl, dl
