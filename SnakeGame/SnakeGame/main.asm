@@ -169,19 +169,19 @@ imul eax, eax, 46
 movzx ecx, dl
 add eax, ecx
 add eax, OFFSET map
-mov [fruit_pos], eax
+mov [fruit_pos], eax		; moves the fruit position into the fruit_pos variable
 ret
 SpawnFruit ENDP
 
 ; Depending on the character in the direction variable, a specific procedure is called
 MoveSnake PROC
-.IF direction == 85
+.IF direction == 85			; 'U' characher
 	call MoveUp
-.ELSEIF direction == 68
+.ELSEIF direction == 68		; 'D' character
 	call MoveDown
-.ELSEIF direction == 82
+.ELSEIF direction == 82		; 'R' character
 	call MoveRight
-.ELSE
+.ELSE						; 'L' character
 	call MoveLeft
 .ENDIF
 ret
