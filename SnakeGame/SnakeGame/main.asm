@@ -72,7 +72,7 @@ mov ebx, [fruit_pos]      ; position of the fruit put in ebx
 .IF eax == ebx            ; if they equal, spawns another fruit
 	call SpawnFruit
 .ENDIF
-
+ret
 AteFruit ENDP
 
 UpdateCoordinates PROC
@@ -109,6 +109,7 @@ mov bl, [direction]
 mov edx, [snake_head_pos]
 mov [edx], bl ; moves direction char to old position of head so the tail know where to go
 mov [snake_head_pos], eax
+call AteFruit
 ret
 tail:
 mov [snake_tail_pos], eax
