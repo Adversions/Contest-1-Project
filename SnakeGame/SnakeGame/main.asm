@@ -117,24 +117,26 @@ mov [snake_tail_pos], eax	;moves the new tail pos into the snake_tail_pos variab
 ret
 UpdateCoordinates ENDP
 
+; Moves the row index into eax and the col index into edx
 GetHeadCoordinates PROC
-mov eax, snake_head_pos
-sub eax, OFFSET map
+mov eax, snake_head_pos		; moves the memory location of snake_head_pos into eax
+sub eax, OFFSET map			; removes the map offset
 
-xor edx, edx
+xor edx, edx				; clears the edx reg
 mov ecx, 46
-div ecx
+div ecx						; divides eax by 46
 
 ret
 GetHeadCoordinates ENDP
 
+; Moves the row index into eax and the col index into edx
 GetTailCoordinates PROC
-mov eax, snake_tail_pos
-sub eax, OFFSET map
+mov eax, snake_tail_pos		; moves the memore location of snake_tail_pos in eax
+sub eax, OFFSET map			; removes the map offset
 
-xor edx, edx
+xor edx, edx				; clears the edx reg
 mov ecx, 46
-div ecx
+div ecx						; divides eax by 46
 
 ret
 GetTailCoordinates ENDP
