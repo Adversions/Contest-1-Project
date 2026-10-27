@@ -237,23 +237,23 @@ MoveRight ENDP
 
 ; Moves the snake one space down
 MoveDown PROC
-call GetHeadCoordinates
+call GetHeadCoordinates		; gets the head coordinates into eax and edx
 mov dl, dl
-inc al
+inc al						; increments the row pos
 mov dh, al
 call Gotoxy
 mov al, 's'
 call WriteChar
-mov bl, 'H'
+mov bl, 'H'					; moves the 'H' char into bl reg so updateCoordinates proc knows its updating the head pos
 call UpdateCoordinates
 
-call GetTailCoordinates
-mov dl, dl
+call GetTailCoordinates		; gets the tail coordinates into eax and edx
+mov dl, dl					; The tail row pos get incremented in the updateCoordinates proc
 mov dh, al
 call Gotoxy
 mov al, ' '
 call WriteChar
-mov bl, 'T'
+mov bl, 'T'					; moves the 'T' char into bl reg so updateCoordinates proc knows its updating the head pos
 call UpdateCoordinates
 
 ret
