@@ -5,10 +5,10 @@ ExitProcess proto,dwExitCode:dword
 .data
 top_bottom_boundary BYTE "------------------------------------------------",0
 side_boundary BYTE "-",0
-map BYTE 874 DUP(0) ; an array the represents each point on the map
+map BYTE 912 DUP(0) ; an array the represents each point on the map
 direction BYTE 'L' ;L: moving left, R: moving right, D: moving down, U: moving up
-snake_head_pos DWORD (OFFSET map + 480) ; coordinates of the head position
-snake_tail_pos DWORD (OFFSET map + 480) ; coordinates of the tail position
+snake_head_pos DWORD (OFFSET map + 500) ; coordinates of the head position
+snake_tail_pos DWORD (OFFSET map + 500) ; coordinates of the tail position
 fruit_pos DWORD ? ; coordinates of teh fruit position
 
 
@@ -98,7 +98,7 @@ pop edx
 
 updateHead:					; jumps here if the head is being updated
 movzx eax, dh				; moves the row (y pos) into eax
-imul eax, eax, 46			; multiplies it by 46 (length of a row) to get to the correct row on map
+imul eax, eax, 48			; multiplies it by 46 (length of a row) to get to the correct row on map
 
 movzx ecx, dl				; moves the column (x pos) into ecx
 add eax, ecx				; adds the column pos to eax to get the correct row and col on the map
@@ -123,7 +123,7 @@ mov eax, snake_head_pos		; moves the memory location of snake_head_pos into eax
 sub eax, OFFSET map			; removes the map offset
 
 xor edx, edx				; clears the edx reg
-mov ecx, 46
+mov ecx, 48
 div ecx						; divides eax by 46
 
 ret
@@ -135,7 +135,7 @@ mov eax, snake_tail_pos		; moves the memore location of snake_tail_pos in eax
 sub eax, OFFSET map			; removes the map offset
 
 xor edx, edx				; clears the edx reg
-mov ecx, 46
+mov ecx, 48
 div ecx						; divides eax by 46
 
 ret
@@ -165,7 +165,7 @@ mov al, '@'					; '@' char represents a fruit
 call WriteChar
 
 movzx eax, dh
-imul eax, eax, 46
+imul eax, eax, 48
 movzx ecx, dl
 add eax, ecx
 add eax, OFFSET map
