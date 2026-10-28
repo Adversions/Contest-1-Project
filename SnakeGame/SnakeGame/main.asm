@@ -56,8 +56,8 @@ mov direction, 'R'
 noKeyPressed:
 call MoveSnake
 
-;Adds a 1 second delay between when the snake moves
-mov eax, 1000
+;Adds a 0.25 second delay between when the snake moves
+mov eax, 250
 call Delay
 jmp GameLoop
 
@@ -71,6 +71,7 @@ mov ebx, [fruit_pos]      ; position of the fruit put in ebx
 
 .IF eax == ebx            ; if they equal, spawns another fruit
 	call SpawnFruit
+	mov eax, 0
 .ENDIF
 ret
 AteFruit ENDP
@@ -198,6 +199,8 @@ mov al, 's'
 call WriteChar
 mov bl, 'H'					; moves the 'H' char into bl reg so updateCoordinates proc knows its updating the head pos
 call UpdateCoordinates
+cmp eax, 0
+jz T1 
 
 call GetTailCoordinates		; gets the tail coordinates into eax and edx
 mov dl, dl					; The tail col pos get decrimented in the updateCoordinates proc
@@ -208,6 +211,7 @@ call WriteChar
 mov bl, 'T'					;  moves the 'T' char into bl reg so updateCoordinates proc knows its updating the head pos
 call UpdateCoordinates
 
+T1:
 ret
 MoveLeft ENDP
 
@@ -222,6 +226,8 @@ mov al, 's'
 call WriteChar
 mov bl, 'H'					; moves the 'H' char into bl reg so updateCoordinates proc knows its updating the head pos
 call UpdateCoordinates
+cmp eax, 0
+jz T1 
 
 call GetTailCoordinates		; gets the tail coordinates into eax and edx
 mov dl, dl					; The tail col pos get incremented in the updateCoordinates proc
@@ -232,6 +238,7 @@ call WriteChar
 mov bl, 'T'					; moves the 'T' char into bl reg so updateCoordinates proc knows its updating the head pos
 call UpdateCoordinates
 
+T1:
 ret
 MoveRight ENDP
 
@@ -246,6 +253,8 @@ mov al, 's'
 call WriteChar
 mov bl, 'H'					; moves the 'H' char into bl reg so updateCoordinates proc knows its updating the head pos
 call UpdateCoordinates
+cmp eax, 0
+jz T1 
 
 call GetTailCoordinates		; gets the tail coordinates into eax and edx
 mov dl, dl					; The tail row pos get incremented in the updateCoordinates proc
@@ -256,6 +265,7 @@ call WriteChar
 mov bl, 'T'					; moves the 'T' char into bl reg so updateCoordinates proc knows its updating the head pos
 call UpdateCoordinates
 
+T1:
 ret
 MoveDown ENDP
 
@@ -270,6 +280,8 @@ mov al, 's'
 call WriteChar
 mov bl, 'H'					; moves the 'H' char into bl reg so updateCoordinates proc knows its updating the head pos
 call UpdateCoordinates
+cmp eax, 0
+jz T1 
 
 call GetTailCoordinates		; gets the tail coordinates into eax and edx
 mov dl, dl					; The tail row pos get decremented in the updateCoordinates proc
@@ -280,6 +292,7 @@ call WriteChar
 mov bl, 'T'					; moves the 'T' char into bl reg so updateCoordinates proc knows its updating the head pos
 call UpdateCoordinates
 
+T1:
 ret
 MoveUp ENDP
 
