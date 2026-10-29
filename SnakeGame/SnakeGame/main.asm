@@ -31,16 +31,19 @@ GameLoop:
 call ReadKey
 jz noKeyPressed
 
-cmp ah, 48h ; checks if up arrow key pressed
-je move_up
-cmp ah, 50h ; checks if down arrow key pressed
-je move_down
-cmp ah, 4Bh; checks if left arrow key pressed
-je move_left
-cmp ah, 4Dh ; checks if right arrow key pressed
-je move_right 
+mov bl, [direction]
+.IF (ah == 4Dh) && (bl != 'L')
+	jmp move_right
+.ELSEIF (ah == 4Bh) && (bl != 'R')
+	jmp move_left
+.ELSEIF (ah == 48h) && (bl != 'D')
+	jmp move_up
+.ELSEIF (ah == 50h) && (bl != 'U')
+	jmp move_down
+.ENDIF
 
 ;changes the direction variable depending on arrow key pressed
+jmp noKeyPressed
 move_up:
 mov direction, 'U'
 jmp noKeyPressed
