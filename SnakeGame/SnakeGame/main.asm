@@ -68,6 +68,20 @@ jmp GameLoop
 invoke ExitProcess,0
 main ENDP
 
+; Checks if the snakes head has hit the snake
+HitBoundary PROC
+push eax
+mov eax, [snake_head_pos]		; moves the snakes pos into eax
+mov al, [eax]					; moves that char at the snake pos into al
+
+.IF al == 0						; if the char is equal to anything but 0, it mean a part of the snake is at that pos
+	mov ecx, 0					; moves 0 into ecx which is checked before the game loops in main proc
+.ENDIF
+
+pop eax
+ret
+HitBoundary ENDP
+
 ; Checks if a fruit has been eaten
 AteFruit PROC
 mov eax, [snake_head_pos] ; position of the head put in eax
