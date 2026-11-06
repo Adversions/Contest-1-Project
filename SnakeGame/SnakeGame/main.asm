@@ -10,6 +10,7 @@ direction BYTE 'L' ;L: moving left, R: moving right, D: moving down, U: moving u
 snake_head_pos DWORD (OFFSET map + 500) ; coordinates of the head position
 snake_tail_pos DWORD (OFFSET map + 500) ; coordinates of the tail position
 fruit_pos DWORD ? ; coordinates of teh fruit position
+gameOver BYTE 0 ; 0 if the game is not over, 1 if the game has ended
 
 
 .code
@@ -74,8 +75,8 @@ push eax
 mov eax, [snake_head_pos]		; moves the snakes pos into eax
 mov al, [eax]					; moves that char at the snake pos into al
 
-.IF al == 0						; if the char is equal to anything but 0, it mean a part of the snake is at that pos
-	mov ecx, 0					; moves 0 into ecx which is checked before the game loops in main proc
+.IF al != 0						; if the char does not equal to 0, it means a part of the snake is at that pos
+	mov [gameOver], 1					; moves 0 into ecx which is checked before the game loops in main proc
 .ENDIF
 
 pop eax
