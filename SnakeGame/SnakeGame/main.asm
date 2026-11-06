@@ -61,11 +61,16 @@ mov direction, 'R'
 noKeyPressed:
 call MoveSnake
 
+.IF gameOver == 1
+	jmp Ex
+.ENDIF
+
 ;Adds a 0.25 second delay between when the snake moves
 mov eax, 250
 call Delay
 jmp GameLoop
 
+Ex:
 invoke ExitProcess,0
 main ENDP
 
@@ -131,6 +136,7 @@ mov edx, [snake_head_pos]	; moves the old snake head pos into edx
 mov [edx], bl ; moves direction char to old position of head so the tail know where to go
 mov [snake_head_pos], eax	;moves the new head pos into the snake_head_pos variable
 call AteFruit
+call HitBoundary
 ret
 tail:
 mov [snake_tail_pos], eax	;moves the new tail pos into the snake_tail_pos variable
