@@ -1,4 +1,5 @@
 INCLUDE Irvine32.inc
+INCLUDE snakegame.inc
 
 ExitProcess proto,dwExitCode:dword
 
