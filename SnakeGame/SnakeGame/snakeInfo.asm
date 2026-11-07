@@ -56,4 +56,16 @@ div ecx						; divides eax by 46
 ret
 GetHeadCoordinates ENDP
 
+; Moves the row index into eax and the col index into edx
+GetTailCoordinates PROC
+mov eax, snake_tail_pos		; moves the memore location of snake_tail_pos in eax
+sub eax, OFFSET map			; removes the map offset
+
+xor edx, edx				; clears the edx reg
+mov ecx, 48
+div ecx						; divides eax by 46
+
+ret
+GetTailCoordinates ENDP
+
 END

@@ -74,18 +74,6 @@ Ex:
 invoke ExitProcess,0
 main ENDP
 
-; Moves the row index into eax and the col index into edx
-GetTailCoordinates PROC
-mov eax, snake_tail_pos		; moves the memore location of snake_tail_pos in eax
-sub eax, OFFSET map			; removes the map offset
-
-xor edx, edx				; clears the edx reg
-mov ecx, 48
-div ecx						; divides eax by 46
-
-ret
-GetTailCoordinates ENDP
-
 ; The spawnFruit procedure does not currently work. I was just adding comments
 ; for all my code and didn't mean to add the spawnFruits procedure to my commit.
 SpawnFruit PROC
