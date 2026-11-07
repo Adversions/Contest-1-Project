@@ -13,6 +13,8 @@ MoveRight PROTO
 MoveDown PROTO
 MoveUp PROTO
 MakeBoundary PROTO
+EXTERNDEF top_bottom_boundary:BYTE
+EXTERNDEF side_boundary:BYTE
 EXTERNDEF direction:BYTE
 EXTERNDEF snake_head_pos:DWORD
 EXTERNDEF snake_tail_pos:DWORD
