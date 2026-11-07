@@ -173,33 +173,6 @@ mov [fruit_pos], eax		; moves the fruit position into the fruit_pos variable
 ret
 SpawnFruit ENDP
 
-; Moves the snake one space up
-MoveUp PROC
-call GetHeadCoordinates		; gets the head coordinates into eax and edx
-mov dl, dl
-dec al						; decrements the row pos
-mov dh, al
-call Gotoxy
-mov al, 's'
-call WriteChar
-mov bl, 'H'					; moves the 'H' char into bl reg so updateCoordinates proc knows its updating the head pos
-call UpdateCoordinates
-cmp eax, 0
-jz T1 
-
-call GetTailCoordinates		; gets the tail coordinates into eax and edx
-mov dl, dl					; The tail row pos get decremented in the updateCoordinates proc
-mov dh, al
-call Gotoxy
-mov al, ' '
-call WriteChar
-mov bl, 'T'					; moves the 'T' char into bl reg so updateCoordinates proc knows its updating the head pos
-call UpdateCoordinates
-
-T1:
-ret
-MoveUp ENDP
-
 ; Makes the boundary that the snake is confined too
 MakeBoundary PROC
 mov edx, OFFSET top_bottom_boundary
