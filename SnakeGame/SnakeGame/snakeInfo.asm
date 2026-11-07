@@ -44,4 +44,16 @@ mov [snake_tail_pos], eax	;moves the new tail pos into the snake_tail_pos variab
 ret
 UpdateCoordinates ENDP
 
+; Moves the row index into eax and the col index into edx
+GetHeadCoordinates PROC
+mov eax, snake_head_pos		; moves the memory location of snake_head_pos into eax
+sub eax, OFFSET map			; removes the map offset
+
+xor edx, edx				; clears the edx reg
+mov ecx, 48
+div ecx						; divides eax by 46
+
+ret
+GetHeadCoordinates ENDP
+
 END
