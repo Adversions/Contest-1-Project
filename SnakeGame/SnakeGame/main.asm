@@ -44,20 +44,6 @@ mov bl, [direction]
 	mov direction, 'D'
 .ENDIF
 
-;changes the direction variable depending on arrow key pressed
-jmp noKeyPressed
-move_up:
-
-jmp noKeyPressed
-move_down:
-
-jmp noKeyPressed
-move_left:
-
-jmp noKeyPressed
-move_right:
-
-
 noKeyPressed:
 call MoveSnake
 
