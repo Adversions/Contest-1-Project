@@ -13,5 +13,5 @@ MoveRight PROTO
 MoveDown PROTO
 MoveUp PROTO
 MakeBoundary PROTO
-
+EXTERNDEF direction:BYTE
 ExitProcess proto,dwExitCode:dword

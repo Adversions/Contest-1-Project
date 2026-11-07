@@ -206,19 +206,6 @@ mov [fruit_pos], eax		; moves the fruit position into the fruit_pos variable
 ret
 SpawnFruit ENDP
 
-; Depending on the character in the direction variable, a specific procedure is called
-MoveSnake PROC
-.IF direction == 85			; 'U' characher
-	call MoveUp
-.ELSEIF direction == 68		; 'D' character
-	call MoveDown
-.ELSEIF direction == 82		; 'R' character
-	call MoveRight
-.ELSE						; 'L' character
-	call MoveLeft
-.ENDIF
-ret
-MoveSnake ENDP
 
 ; moves the snake one space in the left direction
 MoveLeft PROC
