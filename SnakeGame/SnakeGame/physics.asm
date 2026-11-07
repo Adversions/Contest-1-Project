@@ -75,4 +75,31 @@ T1:
 ret
 MoveLeft ENDP
 
+; Moves the snake one space right
+MoveRight PROC
+call getHeadCoordinates		; get the head coordinates into eax and edx
+inc dl						; increments the col pos
+mov dl, dl
+mov dh, al
+call Gotoxy
+mov al, 's'
+call WriteChar
+mov bl, 'H'					; moves the 'H' char into bl reg so updateCoordinates proc knows its updating the head pos
+call UpdateCoordinates
+cmp eax, 0
+jz T1 
+
+call GetTailCoordinates		; gets the tail coordinates into eax and edx
+mov dl, dl					; The tail col pos get incremented in the updateCoordinates proc
+mov dh, al
+call Gotoxy
+mov al, ' '
+call WriteChar
+mov bl, 'T'					; moves the 'T' char into bl reg so updateCoordinates proc knows its updating the head pos
+call UpdateCoordinates
+
+T1:
+ret
+MoveRight ENDP
+
 END
