@@ -35,28 +35,28 @@ jz noKeyPressed
 ; compares the scan code of the pressed key and the direction character
 mov bl, [direction]						
 .IF (ah == 4Dh) && (bl != 'L')			; if the right arrow key is pressed but the current direction is not left
-	jmp move_right
+	mov direction, 'R'
 .ELSEIF (ah == 4Bh) && (bl != 'R')		; if the left arrow key is pressed but the current direction is not right
-	jmp move_left
+	mov direction, 'L'
 .ELSEIF (ah == 48h) && (bl != 'D')		; if the up arrow key is pressed but the current direction is not down
-	jmp move_up
+	mov direction, 'U'
 .ELSEIF (ah == 50h) && (bl != 'U')		; if the down arrow key is pressed but the current direction is not up
-	jmp move_down
+	mov direction, 'D'
 .ENDIF
 
 ;changes the direction variable depending on arrow key pressed
 jmp noKeyPressed
 move_up:
-mov direction, 'U'
+
 jmp noKeyPressed
 move_down:
-mov direction, 'D'
+
 jmp noKeyPressed
 move_left:
-mov direction, 'L'
+
 jmp noKeyPressed
 move_right:
-mov direction, 'R'
+
 
 noKeyPressed:
 call MoveSnake
