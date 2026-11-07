@@ -132,6 +132,7 @@
     <MASM Include="main.asm">
       <FileType>Document</FileType>
     </MASM>
+    <MASM Include="physics.asm" />
   </ItemGroup>
   <ItemGroup>
     <None Include="snakegame.inc" />

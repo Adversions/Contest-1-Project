@@ -18,6 +18,9 @@
     <MASM Include="main.asm">
       <Filter>Source Files</Filter>
     </MASM>
+    <MASM Include="physics.asm">
+      <Filter>Source Files</Filter>
+    </MASM>
   </ItemGroup>
   <ItemGroup>
     <None Include="snakegame.inc">

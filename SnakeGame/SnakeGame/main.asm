@@ -1,7 +1,6 @@
 ;INCLUDE Irvine32.inc
 INCLUDE snakegame.inc
 
-ExitProcess proto,dwExitCode:dword
 
 .data
 top_bottom_boundary BYTE "------------------------------------------------",0

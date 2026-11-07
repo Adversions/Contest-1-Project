@@ -13,3 +13,5 @@ MoveRight PROTO
 MoveDown PROTO
 MoveUp PROTO
 MakeBoundary PROTO
+
+ExitProcess proto,dwExitCode:dword
