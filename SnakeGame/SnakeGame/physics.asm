@@ -36,4 +36,16 @@ div ecx							; row pos is stored in al, col pos is stored in dl
 ret
 HitBoundary ENDP
 
+; Checks if a fruit has been eaten
+AteFruit PROC
+mov eax, [snake_head_pos] ; position of the head put in eax
+mov ebx, [fruit_pos]      ; position of the fruit put in ebx
+
+.IF eax == ebx            ; if they equal, spawns another fruit
+	call SpawnFruit
+	mov eax, 0
+.ENDIF
+ret
+AteFruit ENDP
+
 END
