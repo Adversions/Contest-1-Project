@@ -24,6 +24,9 @@
     <MASM Include="snakeInfo.asm">
       <Filter>Source Files</Filter>
     </MASM>
+    <MASM Include="display.asm">
+      <Filter>Source Files</Filter>
+    </MASM>
   </ItemGroup>
   <ItemGroup>
     <None Include="snakegame.inc">

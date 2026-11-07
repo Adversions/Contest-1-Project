@@ -129,6 +129,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <MASM Include="display.asm" />
     <MASM Include="main.asm">
       <FileType>Document</FileType>
     </MASM>
