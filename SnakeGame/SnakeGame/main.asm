@@ -5,7 +5,7 @@ INCLUDE snakegame.inc
 .data
 top_bottom_boundary BYTE "------------------------------------------------",0
 side_boundary BYTE "-",0
-map BYTE 912 DUP(0) ; an array the represents each point on the map
+map BYTE 1008 DUP(0) ; an array the represents each point on the map
 direction BYTE 'L' ;L: moving left, R: moving right, D: moving down, U: moving up
 snake_head_pos DWORD (OFFSET map + 500) ; coordinates of the head position
 snake_tail_pos DWORD (OFFSET map + 500) ; coordinates of the tail position
